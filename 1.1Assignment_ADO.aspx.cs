@@ -11,18 +11,26 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        //Connection establishment;
+        
             SqlConnection con = new SqlConnection("data source =DESKTOP-CRP7TDE ; database =Assignment_ADO; integrated Security = SSPI");
             SqlCommand cmd = new SqlCommand("select WinningTeam  from FootBall WHERE Status_ ='WIN';SELECT * FROM Football WHERE TeamName1 ='JAPAN' OR TeamName2 ='JAPAN';  ", con);
-            con.Open();
+         
+         //Reading and binding data;
+           con.Open();
             SqlDataReader rdr = cmd.ExecuteReader();
+            
+         //First Gridview of the table's content;
             GridView1.DataSource = rdr;
             GridView1.DataBind();
-
+            
+         //Second Gridview of the table's content;
             while (rdr.NextResult())
             {
                 GridView2.DataSource = rdr;
                 GridView2.DataBind();
             }
+         //Closing connection;
             con.Close();
 
         }
