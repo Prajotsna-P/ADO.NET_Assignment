@@ -22,6 +22,7 @@ VALUES
 (1007,'England','Russia','Win','Russia',4),
 (1008,'Japan','USA','Draw',Null,2);
 
+--Selecting all elements from Football table
 select * from FootBall;
 --Create Stored Procedure
 /*if not exists ( select * from sys.objects 
@@ -37,7 +38,11 @@ as
 begin
 	insert into FootBall values(@MatchID,@TeamName1,@TeamName2,@Status_,@WinningTeam,@Points);
 end
+
+--Executing Stored procedure spFootball
 exec spFootball 1009,'Spain','Germany','Draw',null,'2';
+
+--Retreiving data queries from the Football table
 select WinningTeam from FootBall where Status_ ='win';
 select *  from FootBall;
 
